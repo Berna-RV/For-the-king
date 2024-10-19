@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://nn2t5pv6up37"]
+
+[ext_resource type="Script" path="res://scripts/amazing_fruit.gd" id="1_7pdt5"]
+[ext_resource type="Texture2D" uid="uid://dnj3vt2mmtpuw" path="res://assets/sprites/fruit.png" id="1_u67q2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo4lb"]
+atlas = ExtResource("1_u67q2")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_soatx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo4lb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eopiy"]
+
+[node name="AmazingFruit" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_7pdt5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_soatx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_eopiy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
